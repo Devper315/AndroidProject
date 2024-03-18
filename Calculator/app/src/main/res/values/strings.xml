@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string-array name="operator">
+        <item>+</item>
+        <item>-</item>
+        <item>x</item>
+        <item>:</item>
+    </string-array>
+    <string-array name="technology">
+        <item>Android</item>
+        <item>Java</item>
+        <item>Python</item>
+        <item>NodeJs</item>
+    </string-array>
+</resources>

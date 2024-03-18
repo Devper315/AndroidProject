@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Input a new car"
+        android:textSize="22dp" />
+
+    <Spinner
+        android:id="@+id/img_spinner"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:id="@+id/eItinerary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập lộ trình"
+        android:textSize="12dp" />
+
+    <EditText
+        android:id="@+id/eTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập thời gian"
+        android:textSize="12dp" />
+    <EditText
+        android:id="@+id/ePrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập giá"
+        android:textSize="12dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+
+            android:text="Thêm"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Sửa"
+            android:textSize="14dp" />
+
+    </LinearLayout>
+    <SearchView
+        android:id="@+id/search_tour"
+        android:queryHint="Tìm theo tên"
+        android:iconifiedByDefault="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

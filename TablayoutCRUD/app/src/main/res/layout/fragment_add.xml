@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:src="@drawable/car" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1">
+
+        <TableRow>
+
+            <TextView
+                android:text="Tên:"
+                android:textColor="@color/grayblue"
+                android:textSize="11dp" />
+
+            <EditText
+                android:id="@+id/editName"
+                android:hint="Nhập tên"
+                android:textColor="@color/grayblue"
+                android:textSize="11dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="Thời gian:"
+                android:textColor="@color/grayblue"
+                android:textSize="11dp" />
+
+            <EditText
+                android:id="@+id/editTime"
+                android:hint="Nhập thời gian"
+                android:textColor="@color/grayblue"
+                android:textSize="11dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="Giá:"
+                android:textColor="@color/grayblue"
+                android:textSize="11dp" />
+
+            <EditText
+                android:id="@+id/editPrice"
+                android:hint="Nhập giá"
+                android:textColor="@color/grayblue"
+                android:textSize="11dp" />
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tabbar"
+            android:text="Thêm"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/tabbar"
+            android:text="Cập nhật"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

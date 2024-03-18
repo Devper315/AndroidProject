@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/phone1"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:src="@drawable/samsung"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBaseline_toTopOf="parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price: 2000$"
+        android:id="@+id/price"
+        app:layout_constraintTop_toTopOf="@id/phone1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/phone1"/>
+    <TextView
+        android:id="@+id/description"
+        android:lines="2"
+        android:text="Mô tả\nDòng 2"
+        android:layout_marginBottom="560dp"
+        android:layout_marginLeft="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/price"
+        app:layout_constraintLeft_toLeftOf="@+id/price"/>
+
+    <Button
+        android:id="@+id/bt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HOME"
+        app:layout_constraintTop_toBottomOf="@id/phone1"
+        tools:layout_editor_absoluteX="30dp" />
+
+    <Button
+        android:id="@+id/bt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:text="BUY NOW"
+        app:layout_constraintBottom_toBottomOf="@id/bt1"
+        app:layout_constraintLeft_toRightOf="@id/bt1"
+        app:layout_constraintTop_toTopOf="@id/bt1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button android:id="@+id/bt3"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="DETAIL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/bt2"
+        app:layout_constraintTop_toTopOf="@id/bt1"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

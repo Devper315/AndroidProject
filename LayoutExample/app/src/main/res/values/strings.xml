@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LayoutExample</string>
+    <string-array name="country">
+        <item>Vietnam</item>
+        <item>England</item>
+        <item>USA</item>
+        <item>USB</item>
+    </string-array>
+</resources>
