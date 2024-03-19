@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.lesson11.demointentfilter'
+    namespace 'com.lesson11.football'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.lesson11.demointentfilter"
+        applicationId "com.lesson11.football"
         minSdk 24
         targetSdk 33
         versionCode 1

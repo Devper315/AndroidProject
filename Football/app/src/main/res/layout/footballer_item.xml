@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/icon_male"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/fullname"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Phan Văn Thi"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:id="@+id/isOne"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Hậu vệ"
+            android:clickable="false"/>
+        <CheckBox
+            android:id="@+id/isTwo"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Tiền vệ"
+            android:clickable="false"/>
+        <CheckBox
+            android:id="@+id/isThree"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Tiền đạo"
+            android:clickable="false"/>
+    </LinearLayout>
+</LinearLayout>
