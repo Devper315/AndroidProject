@@ -21,6 +21,5 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv"
         android:layout_marginTop="30dp"
-        android:name="com.lesson8.fragmentdemo.fragment.FragmentDemo"
         tools:layout="@layout/fragment_static" />
 </androidx.constraintlayout.widget.ConstraintLayout>
