@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sqlitedemo.R;
 import com.example.sqlitedemo.ModifyActivity;
+import com.example.sqlitedemo.Utils;
 import com.example.sqlitedemo.adapter.RecyclerViewAdapter;
 import com.example.sqlitedemo.dao.ItemHelper;
 import com.example.sqlitedemo.model.Item;
@@ -59,18 +60,13 @@ public class FragmentHome extends Fragment implements ItemListener {
         startActivity(intent);
     }
 
-    private Double getSum(List<Item> itemList){
-        double sum = 0.0;
-        for (Item item: itemList) sum += item.getPrice();
-        return sum;
-    }
 
     private void showTodayList(){
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         List<Item> todayList = itemHelper.getByDate(sdf.format(date));
         adapter.setItemList(todayList);
-        tvSum.setText("Tổng tiền: " + getSum(todayList));
+        tvSum.setText("Tổng tiền: " + Utils.getSumPrice(todayList));
     }
 
     @Override

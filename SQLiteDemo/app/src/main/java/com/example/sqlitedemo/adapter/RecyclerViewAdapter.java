@@ -50,6 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
     public void setItemList(List<Item> itemList) {
         this.itemList = itemList;
+        notifyDataSetChanged();
     }
 
     public List<Item> getItemList() {

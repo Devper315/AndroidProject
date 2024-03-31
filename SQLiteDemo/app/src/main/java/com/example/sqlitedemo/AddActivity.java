@@ -62,17 +62,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             finish();
         }
         if (view == eDate){
-            final Calendar calendar = Calendar.getInstance();
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH);
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog dialog = new DatePickerDialog(AddActivity.this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int y, int m, int d) {
-                    String date = String.format("%02d/%02d/%d", d, m + 1, y);
-                    eDate.setText(date);
-                }
-            }, year, month, day);
+            DatePickerDialog dialog = Utils.buildDateDialog(this, (EditText) view);
             dialog.show();
         }
     }
