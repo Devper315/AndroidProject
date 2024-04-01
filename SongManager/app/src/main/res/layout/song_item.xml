@@ -19,39 +19,56 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvTitle"
+                android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Laptop"
+                android:text="Anh nhớ em"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvCategory"
+                android:id="@+id/tvSinger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Mua sắm"
+                android:text="Tuấn Hưng"
                 android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Yêu thích"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="10dp"/>
+                <CheckBox
+                    android:id="@+id/ckLove"
+                    android:clickable="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvPrice"
+            android:id="@+id/tvAlbum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="500k"
+            android:text="Album"
             android:textColor="@color/purple_700" />
 
         <TextView
-            android:id="@+id/tvDate"
+            android:id="@+id/tvType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="31/05/2023" />
+            android:text="Thể loại" />
 
     </LinearLayout>
 
