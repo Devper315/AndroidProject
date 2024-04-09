@@ -58,6 +58,15 @@ public class SongHelper extends SQLiteOpenHelper {
         return songList;
     }
 
+    public int getCountSongByType(String type){
+        SQLiteDatabase sqlite = getReadableDatabase();
+        String[] whereArgs = {type};
+        Cursor cursor = sqlite.rawQuery("SELECT COUNT(*) FROM song WHERE type = ?", whereArgs);
+        cursor.moveToFirst();
+        int count = cursor.getInt(0);
+        return count;
+
+    }
     public List<Song> getSongByNameAndAlbum(String name, String album) {
         List<Song> songList = new ArrayList<>();
         SQLiteDatabase sqlite = getReadableDatabase();

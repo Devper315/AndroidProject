@@ -28,10 +28,8 @@ import java.util.List;
 
 public class FragmentSearch extends Fragment {
     private RecyclerView recyclerView;
-    private TextView tvSum;
-//    private Button btnSearch;
+    private TextView tvSum, tvCountry, tvBlues, tvRock, tvPop;
     private SearchView searchView;
-    private Spinner spAlbum;
     private SongAdapter songAdapter;
     private SongHelper songHelper;
 
@@ -65,26 +63,15 @@ public class FragmentSearch extends Fragment {
                 if (!s.isEmpty()) {
                     List<Song> searchList = songHelper.getSongByName(s);
                     tvSum.setText("Tổng số bài hát: " + songAdapter.getSongList().size());
+                    tvCountry.setText("Country: " + songHelper.getCountSongByType("Country") + " bài hát");
+                    tvBlues.setText("Blues: " + songHelper.getCountSongByType("Blues") + " bài hát");
+                    tvRock.setText("Rock: " + songHelper.getCountSongByType("Rock") + " bài hát");
+                    tvPop.setText("Pop: " + songHelper.getCountSongByType("Pop") + " bài hát");
+
                     songAdapter.setSongList(searchList);
                 }
+
                 return true;
-            }
-        });
-//        btnSearch.setOnClickListener(this);
-        spAlbum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                String album = spAlbum.getItemAtPosition(position).toString();
-                List<Song> searchList;
-                if (!album.equalsIgnoreCase("Tất cả")) searchList = songHelper.getSongByAlbum(album);
-                else searchList = songHelper.getAllSong();
-                songAdapter.setSongList(searchList);
-                tvSum.setText("Tổng số bài hát: " + songAdapter.getSongList().size());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
     }
@@ -93,16 +80,18 @@ public class FragmentSearch extends Fragment {
     private void initView(View view) {
         recyclerView = view.findViewById(R.id.recyclerView);
         tvSum = view.findViewById(R.id.tvSum);
-//        btnSearch = view.findViewById(R.id.btnSearch);
+        tvBlues = view.findViewById(R.id.tvBlues);
+        tvCountry = view.findViewById(R.id.tvCountry);
+        tvRock = view.findViewById(R.id.tvRock);
+        tvPop = view.findViewById(R.id.tvPop);
+
         searchView = view.findViewById(R.id.search);
-        spAlbum = view.findViewById(R.id.spAlbum);
         String[] albums = getResources().getStringArray(R.array.album);
         String[] newAlbums = new String[albums.length + 1];
         newAlbums[0] = "Tất cả";
         for (int i = 0; i < albums.length; i++) {
             newAlbums[i + 1] = albums[i];
         }
-        spAlbum.setAdapter(new ArrayAdapter<String>(getContext(), R.layout.item_spinner, newAlbums));
 
     }
 
