@@ -25,16 +25,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        drawerLayout = findViewById(R.id.my_drawer);
-        navigationView = findViewById(R.id.navigation_view);
+        initView();
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
         navController = Navigation.findNavController(this, R.id.main_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+    }
+
+    private void initView(){
+        drawerLayout = findViewById(R.id.my_drawer);
+        navigationView = findViewById(R.id.navigation_view);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
     }
 
     @Override
