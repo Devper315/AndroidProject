@@ -8,7 +8,7 @@
     tools:context=".authentication.RegisterActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circle_image_view"
+        android:id="@+id/reg_image"
         android:layout_width="175dp"
         android:layout_height="175dp"
         android:layout_marginTop="30dp"
@@ -26,13 +26,13 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/circle_image_view">
+        app:layout_constraintTop_toBottomOf="@id/reg_image">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/reg_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name" />
+            android:hint="Họ tên" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -67,7 +67,7 @@
             android:id="@+id/reg_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="Mật khẩu"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,11 +76,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Register"
+        android:layout_marginBottom="40dp"
+        android:text="Đăng ký"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_input_layout3"
         app:layout_constraintVertical_bias="0.158" />
+
+    <ProgressBar
+        android:id="@+id/register_progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.428"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="35dp"
+        android:text="Đã có tài khoản ?"
+        android:textColor="@color/textColor"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/reg_log_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/reg_log_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="35dp"
+        android:text="Đăng nhập ngay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
