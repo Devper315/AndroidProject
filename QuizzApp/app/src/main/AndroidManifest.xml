@@ -12,11 +12,30 @@
         android:theme="@style/Theme.QuizzApp"
         tools:targetApi="31">
         <activity
+            android:name=".authentication.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.code.CodeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.code.CodeCategory"
+            android:exported="false" />
+        <activity
+            android:name=".chapter.five.Javascript"
+            android:exported="false" />
+        <activity
+            android:name=".chapter.two.PHP"
+            android:exported="false" />
+        <activity
+            android:name=".chapter.one.Android"
+            android:exported="false" />
+        <activity
+            android:name=".chapter.one.Java"
+            android:exported="false" />
+        <activity
             android:name=".chaptertopics.TopicActivity"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
