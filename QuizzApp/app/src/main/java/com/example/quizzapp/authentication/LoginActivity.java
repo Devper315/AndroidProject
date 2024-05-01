@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.quizzapp.R;
+import com.example.quizzapp.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -66,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         loginProgressBar.setVisibility(View.GONE);
+                        Utils.getLoginUser();
                         startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                         finish();
                     }

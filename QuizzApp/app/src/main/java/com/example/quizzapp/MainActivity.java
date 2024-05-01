@@ -1,5 +1,7 @@
 package com.example.quizzapp;
 
+import static com.example.quizzapp.Utils.loginUser;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,9 +17,12 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.quizzapp.authentication.LoginActivity;
+import com.example.quizzapp.authentication.ProfileActivity;
 import com.example.quizzapp.authentication.RegisterActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
@@ -25,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private BottomNavigationView bottomNavigationView;
     private NavController navController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 
-    private void initView(){
+    private void initView() {
         drawerLayout = findViewById(R.id.my_drawer);
         navigationView = findViewById(R.id.navigation_view);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -49,8 +55,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (toggle.onOptionsItemSelected(item)) return true;
-        if (item.getItemId() == R.id.profile)
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        if (item.getItemId() == R.id.profile) {
+            if (loginUser != null) {
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+            } else
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -65,5 +75,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.option_menu, menu);
         return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Utils.getLoginUser();
     }
 }

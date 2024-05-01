@@ -123,6 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                                 updateUserImage(name, pickedImgUri, auth.getCurrentUser());
+                                openProfile();
                                 registerProgressBar.setVisibility(View.GONE);
                             }
                             else {
@@ -132,6 +133,11 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    private void openProfile() {
+        startActivity(new Intent(this, ProfileActivity.class));
+        finish();
     }
 
     private void updateUserImage(String name, Uri pickedImgUri, FirebaseUser currentUser) {
