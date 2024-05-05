@@ -14,10 +14,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.quizzapp.R;
-import com.example.quizzapp.chapter.five.Javascript;
-import com.example.quizzapp.chapter.one.Android;
-import com.example.quizzapp.chapter.one.Java;
-import com.example.quizzapp.chapter.two.PHP;
+
 
 public class TopicActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -78,29 +75,7 @@ public class TopicActivity extends AppCompatActivity {
 
         adapter = new TopicAdapter(arr, TopicActivity.this);
         gridView.setAdapter(adapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                openActivity(arr[i]);
-            }
-        });
+
     }
 
-    private void openActivity(String s) {
-        switch (s){
-            case "Java":
-                startActivity(new Intent(TopicActivity.this, Java.class));
-                break;
-            case "Android":
-                startActivity(new Intent(TopicActivity.this, Android.class));
-                break;
-            case "PHP":
-                startActivity(new Intent(TopicActivity.this, PHP.class));
-                break;
-            case "Javascript":
-                startActivity(new Intent(TopicActivity.this, Javascript.class));
-                break;
-
-        }
-    }
 }

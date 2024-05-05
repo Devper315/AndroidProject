@@ -5,19 +5,12 @@
         android:icon="@drawable/icon_leaderboard"
         android:title="BXH"/>
     <item
-        android:id="@+id/pdf"
-        android:title="PDF"
+        android:id="@+id/manage_question"
+        android:title="Quản lý câu hỏi"
         android:icon="@drawable/icon_pdf"/>
     <item
         android:id="@+id/share"
-        android:title="Share"
+        android:title="Chia sẻ"
         android:icon="@drawable/icon_share"/>
-    <item
-        android:id="@+id/rate"
-        android:title="Rate"
-        android:icon="@drawable/icon_rate"/>
-    <item
-        android:id="@+id/about"
-        android:title="About"
-        android:icon="@drawable/icon_about"/>
+
 </menu>

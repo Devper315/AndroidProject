@@ -1,12 +1,18 @@
-package com.example.quizzapp.ui.quizz;
+package com.example.quizzapp.model;
 
-public class QuestionData {
+public class Question {
+    private int id;
     private String option1, option2, option3, option4, question, answer;
 
-    public QuestionData() {
+    public Question() {
+
     }
 
-    public QuestionData(String option1, String option2, String option3, String option4, String question, String answer) {
+    public int getId() {
+        return id;
+    }
+
+    public Question(String option1, String option2, String option3, String option4, String question, String answer) {
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;

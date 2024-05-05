@@ -1,5 +1,6 @@
 package com.example.quizzapp.authentication;
 
+import static com.example.quizzapp.Utils.loginUser;
 import static com.example.quizzapp.Utils.reference;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,8 @@ import android.widget.Toast;
 
 import com.example.quizzapp.R;
 import com.example.quizzapp.Utils;
+import com.example.quizzapp.dao.QuizzHelper;
+import com.example.quizzapp.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -128,7 +131,9 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                                updateUserImage(name, pickedImgUri, auth.getCurrentUser());
+                                FirebaseUser registerUser = auth.getCurrentUser();
+                                updateUserImage(name, pickedImgUri, registerUser);
+
                                 openProfile();
                                 registerProgressBar.setVisibility(View.GONE);
                             }
@@ -143,6 +148,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void openProfile() {
         Utils.getLoginUser();
+        QuizzHelper helper = new QuizzHelper(RegisterActivity.this);
+        if (!helper.checkUserByFirebaseId(loginUser.getUid())) {
+            User localUser = new User(loginUser.getDisplayName(), loginUser.getUid());
+            helper.addUser(localUser);
+        }
         startActivity(new Intent(this, ProfileActivity.class));
         finish();
     }
@@ -161,21 +171,21 @@ public class RegisterActivity extends AppCompatActivity {
                                 .setPhotoUri(uri)
                                 .build();
                         currentUser.updateProfile(changeRequest);
-                        HashMap map = new HashMap();
-                        map.put("name", name);
-                        map.put("image", uri.toString());
-                        map.put("score", 0);
-                        reference.child("score").child(currentUser.getUid()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(RegisterActivity.this, "Đã thêm thông tin", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+//                        HashMap map = new HashMap();
+//                        map.put("name", name);
+//                        map.put("image", uri.toString());
+//                        map.put("score", 0);
+//                        reference.child("score").child(currentUser.getUid()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                Toast.makeText(RegisterActivity.this, "Đã thêm thông tin", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }).addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
                     }
                 });
             }

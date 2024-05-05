@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.quizzapp.authentication.LoginActivity;
 import com.example.quizzapp.authentication.ProfileActivity;
 import com.example.quizzapp.authentication.RegisterActivity;
+import com.example.quizzapp.dao.QuizzHelper;
 import com.example.quizzapp.leaderboard.LeaderBoardActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -68,8 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.pdf)
-            Toast.makeText(this, "Ebook", Toast.LENGTH_SHORT).show();
         if (item.getItemId() == R.id.leaderboar)
             startActivity(new Intent(MainActivity.this, LeaderBoardActivity.class));
         return true;

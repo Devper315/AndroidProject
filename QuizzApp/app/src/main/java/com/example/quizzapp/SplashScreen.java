@@ -28,7 +28,7 @@ public class SplashScreen extends AppCompatActivity implements Animation.Animati
                 startActivity(intent);
                 finish();
             }
-        }, 2000);
+        }, 1500);
     }
 
     @Override

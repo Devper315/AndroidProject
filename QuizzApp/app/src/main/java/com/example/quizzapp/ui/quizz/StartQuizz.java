@@ -20,10 +20,9 @@ import android.widget.Toast;
 
 import com.example.quizzapp.R;
 import com.example.quizzapp.Utils;
+import com.example.quizzapp.model.Question;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class StartQuizz extends AppCompatActivity {
     private int score = 0;
     private int position = 0;
     private int count = 0;
-    private List<QuestionData> questionList;
+    private List<Question> questionList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +58,7 @@ public class StartQuizz extends AppCompatActivity {
                     String option3 = snapshot.child("C").getValue().toString();
                     String option4 = snapshot.child("D").getValue().toString();
                     String answer = snapshot.child("correct_answer").getValue().toString();
-                    questionList.add(new QuestionData(option1, option2, option3, option4, question, answer));
+                    questionList.add(new Question(option1, option2, option3, option4, question, answer));
                 }
                 if (questionList.size() > 0) {
                     loadQuestion(questionTxt, 0, questionList.get(position).getQuestion());
@@ -95,7 +94,7 @@ public class StartQuizz extends AppCompatActivity {
                     shareBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            QuestionData question = questionList.get(position);
+                            Question question = questionList.get(position);
                             String body = "*" + question.getQuestion() + "*\n" +
                                     "(a) " + question.getOption1() + "\n" +
                                     "(b) " + question.getOption2() + "\n" +

@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.example.quizzapp.R;
 import com.example.quizzapp.Utils;
+import com.example.quizzapp.dao.QuizzHelper;
+import com.example.quizzapp.model.Result;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,6 +23,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 public class ScoreActivity extends AppCompatActivity {
     TextView scoreTxt, totalTxt;
@@ -37,19 +43,12 @@ public class ScoreActivity extends AppCompatActivity {
         totalTxt = findViewById(R.id.total);
         scoreTxt.setText(score + "");
         totalTxt.setText(score + "");
-        reference.child("score").child(loginUser.getUid()).child("score").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists())
-                    score += Integer.parseInt(snapshot.getValue().toString());
-                snapshot.getRef().setValue(score);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String formattedDateTime = dateFormat.format(currentDate);
+        Result result = new Result(score, loginUser.getUid(), formattedDateTime);
+        QuizzHelper helper = new QuizzHelper(this);
+        helper.addResult(result);
 
     }
 }
