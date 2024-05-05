@@ -46,7 +46,7 @@ public class ScoreActivity extends AppCompatActivity {
         Date currentDate = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String formattedDateTime = dateFormat.format(currentDate);
-        Result result = new Result(score, loginUser.getUid(), formattedDateTime);
+        Result result = new Result(score + "/" + total, loginUser.getUid(), formattedDateTime);
         QuizzHelper helper = new QuizzHelper(this);
         helper.addResult(result);
 

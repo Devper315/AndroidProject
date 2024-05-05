@@ -4,16 +4,16 @@ public class Result {
     private int id;
 
 
-    private int score;
+    private String score;
     private String userId, datetime;
 
-    public Result(int score, String userId, String datetime) {
+    public Result(String score, String userId, String datetime) {
         this.score = score;
         this.userId = userId;
         this.datetime = datetime;
     }
 
-    public Result(int id, int score, String userId, String datetime) {
+    public Result(int id, String score, String userId, String datetime) {
         this.id = id;
         this.score = score;
         this.userId = userId;
@@ -25,11 +25,11 @@ public class Result {
     }
 
 
-    public int getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(String score) {
         this.score = score;
     }
 

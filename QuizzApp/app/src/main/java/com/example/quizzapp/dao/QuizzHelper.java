@@ -32,7 +32,7 @@ public class QuizzHelper extends SQLiteOpenHelper {
         db.execSQL(sql1);
         String sql2 = "CREATE TABLE result(" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "user_id TEXT, score INTEGER, datetime TEXT)";
+                "user_id TEXT, score String, datetime TEXT)";
         db.execSQL(sql2);
     }
 
@@ -53,6 +53,18 @@ public class QuizzHelper extends SQLiteOpenHelper {
         getValuesFromResult(values, result);
         SQLiteDatabase database = getWritableDatabase();
         return database.insert("result", null, values);
+    }
+
+    public List<Result> getResultByUserId(String userId){
+        List<Result> list = new ArrayList<>();
+        String whereClause = "user_id like ?";
+        String[] whereArgs = {userId};
+        SQLiteDatabase sqlite = getReadableDatabase();
+        Cursor cr = sqlite.query("result", null, whereClause, whereArgs, null, null, null);
+        while (cr != null && cr.moveToNext()) {
+            addResultFromCursor(cr, list);
+        }
+        return list;
     }
 
     private void getValuesFromUser(ContentValues values, User user) {
@@ -85,8 +97,15 @@ public class QuizzHelper extends SQLiteOpenHelper {
     public void addResultFromCursor(Cursor cursor, List<Result> list) {
         int id = cursor.getInt(0);
         String userId = cursor.getString(1);
-        int score = cursor.getInt(2);
+        String score = cursor.getString(2);
         String datetime = cursor.getString(3);
         list.add(new Result(id, score, userId, datetime));
+    }
+
+    public int deleteResultById(int id) {
+        String whereClause = "_id = ?";
+        String[] whereArgs = {Integer.toString(id)};
+        SQLiteDatabase sqlite = getWritableDatabase();
+        return sqlite.delete("result", whereClause, whereArgs);
     }
 }
