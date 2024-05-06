@@ -1,5 +1,7 @@
 package com.example.quizzapp.authentication;
 
+import static com.example.quizzapp.Utils.loginUser;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.quizzapp.R;
 import com.example.quizzapp.Utils;
+import com.example.quizzapp.dao.QuizzHelper;
+import com.example.quizzapp.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,21 +38,16 @@ public class LoginActivity extends AppCompatActivity {
         loginProgressBar = findViewById(R.id.login_progress_bar);
         loginProgressBar.setVisibility(View.GONE);
         auth = FirebaseAuth.getInstance();
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginUser();
-            }
-        });
-        logRegBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openRegister();
-            }
-        });
+        loginBtn.setOnClickListener(view -> loginUser());
+        logRegBtn.setOnClickListener(view -> openRegister());
     }
 
     private void openRegister() {
+        QuizzHelper helper = new QuizzHelper(this);
+        if (!helper.checkUserByFirebaseId(loginUser.getUid())) {
+            User localUser = new User(loginUser.getDisplayName(), loginUser.getUid());
+            helper.addUser(localUser);
+        }
         startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         finish();
     }

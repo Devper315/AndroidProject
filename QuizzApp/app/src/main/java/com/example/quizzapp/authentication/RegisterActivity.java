@@ -148,7 +148,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void openProfile() {
         Utils.getLoginUser();
-        QuizzHelper helper = new QuizzHelper(RegisterActivity.this);
+        QuizzHelper helper = new QuizzHelper(this);
         if (!helper.checkUserByFirebaseId(loginUser.getUid())) {
             User localUser = new User(loginUser.getDisplayName(), loginUser.getUid());
             helper.addUser(localUser);
@@ -171,21 +171,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 .setPhotoUri(uri)
                                 .build();
                         currentUser.updateProfile(changeRequest);
-//                        HashMap map = new HashMap();
-//                        map.put("name", name);
-//                        map.put("image", uri.toString());
-//                        map.put("score", 0);
-//                        reference.child("score").child(currentUser.getUid()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                Toast.makeText(RegisterActivity.this, "Đã thêm thông tin", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
                     }
                 });
             }

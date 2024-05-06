@@ -3,11 +3,7 @@
     <item
         android:id="@+id/leaderboar"
         android:icon="@drawable/icon_leaderboard"
-        android:title="BXH"/>
-    <item
-        android:id="@+id/manage_question"
-        android:title="Quản lý câu hỏi"
-        android:icon="@drawable/icon_pdf"/>
+        android:title="Lịch sử làm bài"/>
     <item
         android:id="@+id/share"
         android:title="Chia sẻ"
