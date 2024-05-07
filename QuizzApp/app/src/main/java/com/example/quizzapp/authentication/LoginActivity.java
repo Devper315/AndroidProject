@@ -43,11 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void openRegister() {
-        QuizzHelper helper = new QuizzHelper(this);
-        if (!helper.checkUserByFirebaseId(loginUser.getUid())) {
-            User localUser = new User(loginUser.getDisplayName(), loginUser.getUid());
-            helper.addUser(localUser);
-        }
+
         startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         finish();
     }
@@ -67,6 +63,11 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()){
                         loginProgressBar.setVisibility(View.GONE);
                         Utils.getLoginUser();
+                        QuizzHelper helper = new QuizzHelper(LoginActivity.this);
+                        if (!helper.checkUserByFirebaseId(loginUser.getUid())) {
+                            User localUser = new User(loginUser.getDisplayName(), loginUser.getUid());
+                            helper.addUser(localUser);
+                        }
                         startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                         finish();
                     }
