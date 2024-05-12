@@ -28,15 +28,12 @@ public class QuizzFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_quizz, container, false);
         playQuizz = root.findViewById(R.id.play_quizz);
-        playQuizz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (loginUser != null){
-                    startActivity(new Intent(getContext(), StartQuizz.class));
-                }
-                else{
-                    startActivity(new Intent(getContext(), LoginActivity.class));
-                }
+        playQuizz.setOnClickListener(view -> {
+            if (loginUser != null){
+                startActivity(new Intent(getContext(), StartQuizz.class));
+            }
+            else{
+                startActivity(new Intent(getContext(), LoginActivity.class));
             }
         });
         return root;

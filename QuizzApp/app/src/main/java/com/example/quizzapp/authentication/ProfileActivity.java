@@ -15,9 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.quizzapp.MainActivity;
 import com.example.quizzapp.R;
 import com.example.quizzapp.Utils;
-import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileActivity extends AppCompatActivity {
     TextView name, email;

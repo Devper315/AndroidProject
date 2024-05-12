@@ -62,26 +62,13 @@ public class RegisterActivity extends AppCompatActivity {
         registerProgressBar = findViewById(R.id.register_progress_bar);
         registerProgressBar.setVisibility(View.GONE);
         auth = FirebaseAuth.getInstance();
-        registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerUser();
+        registerBtn.setOnClickListener(v -> registerUser());
+        regLogBtn.setOnClickListener(v -> openLogin());
+        regImage.setOnClickListener(v -> {
+            if (Build.VERSION.SDK_INT >= 22){
+                checkAndRequestPermission();
             }
-        });
-        regLogBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openLogin();
-            }
-        });
-        regImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= 22){
-                    checkAndRequestPermission();
-                }
-                else openGallery();
-            }
+            else openGallery();
         });
     }
 
@@ -120,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
         name = regName.getText().toString().trim();
         email = regEmail.getText().toString().trim();
         password = regPassword.getText().toString().trim();
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || pickedImgUri == null){
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty()){
             Toast.makeText(this, "Nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
         }
         else{
@@ -133,7 +120,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                                 FirebaseUser registerUser = auth.getCurrentUser();
                                 updateUserImage(name, pickedImgUri, registerUser);
-
                                 openProfile();
                                 registerProgressBar.setVisibility(View.GONE);
                             }
