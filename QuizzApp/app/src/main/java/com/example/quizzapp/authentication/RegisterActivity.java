@@ -134,11 +134,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void openProfile() {
         Utils.getLoginUser();
-        QuizzHelper helper = new QuizzHelper(this);
-        if (!helper.checkUserByFirebaseId(loginUser.getUid())) {
-            User localUser = new User(loginUser.getDisplayName(), loginUser.getUid());
-            helper.addUser(localUser);
-        }
         startActivity(new Intent(this, ProfileActivity.class));
         finish();
     }

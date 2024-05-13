@@ -21,10 +21,12 @@ import android.widget.Toast;
 import com.example.quizzapp.R;
 import com.example.quizzapp.Utils;
 import com.example.quizzapp.model.Question;
+import com.example.quizzapp.model.QuestionDone;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class StartQuizz extends AppCompatActivity {
     private int position = 0;
     private int count = 0;
     private List<Question> questionList;
+    private List<QuestionDone> doneList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +85,7 @@ public class StartQuizz extends AppCompatActivity {
                                 Intent intent = new Intent(StartQuizz.this, ScoreActivity.class);
                                 intent.putExtra("score", score);
                                 intent.putExtra("total", questionList.size());
+                                intent.putExtra("doneList", (Serializable) doneList);
                                 startActivity(intent);
                                 finish();
                                 return;
@@ -125,7 +129,8 @@ public class StartQuizz extends AppCompatActivity {
         nextBtn.setEnabled(true);
         nextBtn.setAlpha(1);
         String answer = questionList.get(position).getAnswer();
-        if (selectedOption.getText().toString().equals(answer)) {
+        String selected = selectedOption.getText().toString();
+        if (selected.equals(answer)) {
             score++;
             selectedOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4caf50")));
         } else {
@@ -133,6 +138,7 @@ public class StartQuizz extends AppCompatActivity {
             Button correctOption = container.findViewWithTag(answer);
             correctOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4caf50")));
         }
+        doneList.add(new QuestionDone(questionList.get(position), selected));
     }
 
     private void enabled(Boolean enable) {
@@ -145,9 +151,9 @@ public class StartQuizz extends AppCompatActivity {
     }
 
     private void loadQuestion(View view, int value, String data) {
-        for (int i = 0; i < 4; i++) {
-            container.getChildAt(i).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#989898")));
-        }
+//        for (int i = 0; i < 4; i++) {
+//            container.getChildAt(i).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#989898")));
+//        }
         view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500)
                 .setStartDelay(100).setInterpolator(new DecelerateInterpolator())
                 .setListener(new Animator.AnimatorListener() {

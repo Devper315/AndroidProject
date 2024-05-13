@@ -14,7 +14,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.quizzapp.R;
+import com.example.quizzapp.dao.QuestionDoneHelper;
 import com.example.quizzapp.dao.QuizzHelper;
+import com.example.quizzapp.dao.ResultHelper;
+import com.example.quizzapp.model.QuestionDone;
 import com.example.quizzapp.model.Result;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,8 +40,9 @@ public class HistoryActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         progressBar = findViewById(R.id.progress_bar);
         scoreReference = reference.child("score");
-        QuizzHelper helper = new QuizzHelper(this);
-        List<Result> resultList = helper.getResultByUserId(loginUser.getUid());
+        ResultHelper resultHelper = new ResultHelper(this);
+        QuestionDoneHelper doneHelper = new QuestionDoneHelper(this);
+        List<Result> resultList = resultHelper.getResultByUserId(loginUser.getUid());
         adapter = new HistoryAdapter(resultList, HistoryActivity.this);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

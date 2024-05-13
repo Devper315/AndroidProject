@@ -17,22 +17,30 @@ import java.util.List;
 
 public class QuizzHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "quizz.db";
-    private static int DATABASE_VERSION = 1;
+    private static int DATABASE_VERSION = 2;
 
     public QuizzHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        db.execSQL("PRAGMA foreign_keys = ON;");
+    }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql1 = "CREATE TABLE user(" +
+        String sql1 = "CREATE TABLE result(" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "name TEXT, firebase_id TEXT)";
+                "user_id TEXT, score INTEGER, datetime TEXT)";
         db.execSQL(sql1);
-        String sql2 = "CREATE TABLE result(" +
+        String sql2 = "CREATE TABLE question_done(" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "user_id TEXT, score String, datetime TEXT)";
+                "option1 TEXT, option2 TEXT, option3 TEXT, option4 TEXT, question TEXT, answer TEXT," +
+                "selected TEXT, result_id INT," +
+                "FOREIGN KEY (result_id) REFERENCES result(_id))";
         db.execSQL(sql2);
     }
 
@@ -41,71 +49,5 @@ public class QuizzHelper extends SQLiteOpenHelper {
 
     }
 
-    public long addUser(User user) {
-        ContentValues values = new ContentValues();
-        getValuesFromUser(values, user);
-        SQLiteDatabase database = getWritableDatabase();
-        return database.insert("user", null, values);
-    }
 
-    public long addResult(Result result) {
-        ContentValues values = new ContentValues();
-        getValuesFromResult(values, result);
-        SQLiteDatabase database = getWritableDatabase();
-        return database.insert("result", null, values);
-    }
-
-    public List<Result> getResultByUserId(String userId){
-        List<Result> list = new ArrayList<>();
-        String whereClause = "user_id like ?";
-        String[] whereArgs = {userId};
-        SQLiteDatabase sqlite = getReadableDatabase();
-        Cursor cr = sqlite.query("result", null, whereClause, whereArgs, null, null, null);
-        while (cr != null && cr.moveToNext()) {
-            addResultFromCursor(cr, list);
-        }
-        return list;
-    }
-
-    private void getValuesFromUser(ContentValues values, User user) {
-        values.put("name", user.getName());
-        values.put("firebase_id", user.getFirebaseId());
-    }
-
-    private void getValuesFromResult(ContentValues values, Result result) {
-        values.put("score", result.getScore());
-        values.put("user_id", result.getUserId());
-        values.put("datetime", result.getDatetime());
-
-    }
-
-    public boolean checkUserByFirebaseId(String firebaseId) {
-        String whereClause = "firebase_id like ?";
-        String[] whereArgs = {firebaseId};
-        SQLiteDatabase sqlite = getReadableDatabase();
-        Cursor cr = sqlite.query("user", null, whereClause, whereArgs, null, null, null);
-        return cr != null && cr.moveToFirst();
-    }
-
-    public void addUserFromCursor(Cursor cursor, List<User> list) {
-        int id = cursor.getInt(0);
-        String name = cursor.getString(1);
-        String firebaseId = cursor.getString(2);
-        list.add(new User(id, name, firebaseId));
-    }
-
-    public void addResultFromCursor(Cursor cursor, List<Result> list) {
-        int id = cursor.getInt(0);
-        String userId = cursor.getString(1);
-        String score = cursor.getString(2);
-        String datetime = cursor.getString(3);
-        list.add(new Result(id, score, userId, datetime));
-    }
-
-    public int deleteResultById(int id) {
-        String whereClause = "_id = ?";
-        String[] whereArgs = {Integer.toString(id)};
-        SQLiteDatabase sqlite = getWritableDatabase();
-        return sqlite.delete("result", whereClause, whereArgs);
-    }
 }

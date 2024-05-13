@@ -1,11 +1,22 @@
 package com.example.quizzapp.model;
 
-public class Result {
+import java.io.Serializable;
+import java.util.List;
+
+public class Result implements Serializable {
     private int id;
-
-
     private String score;
     private String userId, datetime;
+
+    public List<QuestionDone> getDoneList() {
+        return doneList;
+    }
+
+    public void setDoneList(List<QuestionDone> doneList) {
+        this.doneList = doneList;
+    }
+
+    private List<QuestionDone> doneList;
 
     public Result(String score, String userId, String datetime) {
         this.score = score;
