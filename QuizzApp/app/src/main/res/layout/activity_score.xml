@@ -59,5 +59,12 @@
             android:layout_marginLeft="12dp"
             android:text="10"/>
     </LinearLayout>
+    <Button
+        android:id="@+id/history_btn"
+        android:text="Xem lịch sử"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_button_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

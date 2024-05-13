@@ -7,7 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import com.example.quizzapp.Utils;
 import com.example.quizzapp.dao.QuestionDoneHelper;
 import com.example.quizzapp.dao.QuizzHelper;
 import com.example.quizzapp.dao.ResultHelper;
+import com.example.quizzapp.history.HistoryActivity;
 import com.example.quizzapp.model.QuestionDone;
 import com.example.quizzapp.model.Result;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,6 +38,7 @@ import java.util.List;
 public class ScoreActivity extends AppCompatActivity {
     TextView scoreTxt, totalTxt;
     int score, total;
+    Button historyBtn;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -45,6 +49,7 @@ public class ScoreActivity extends AppCompatActivity {
         total = getIntent().getIntExtra("total", 0);
         scoreTxt = findViewById(R.id.score);
         totalTxt = findViewById(R.id.total);
+        historyBtn = findViewById(R.id.history_btn);
         scoreTxt.setText(score + "");
         totalTxt.setText(total + "");
         Date currentDate = new Date();
@@ -56,5 +61,9 @@ public class ScoreActivity extends AppCompatActivity {
         Long newResultId = resultHelper.addResult(result);
         QuestionDoneHelper doneHelper = new QuestionDoneHelper(this);
         doneHelper.addDoneList(doneList, newResultId);
+        historyBtn.setOnClickListener(view ->{
+            Intent intent = new Intent(ScoreActivity.this, HistoryActivity.class);
+            startActivity(intent);
+        });
     }
 }
