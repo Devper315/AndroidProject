@@ -52,7 +52,7 @@ public class ResultHelper {
         list.add(new Result(id, score, userId, datetime));
     }
 
-    public void deleteResultById(int id) {
+    public void deleteById(int id) {
         String whereClause = "_id = ?";
         String[] whereArgs = {Integer.toString(id)};
         SQLiteDatabase sqlite = helper.getWritableDatabase();

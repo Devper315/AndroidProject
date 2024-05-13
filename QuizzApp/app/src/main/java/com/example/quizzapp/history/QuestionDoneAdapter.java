@@ -1,6 +1,9 @@
 package com.example.quizzapp.history;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,14 +35,20 @@ public class QuestionDoneAdapter extends RecyclerView.Adapter<QuestionDoneAdapte
         return viewHolder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull QuestionDoneViewHolder holder, int position) {
         QuestionDone questionDone = doneList.get(position);
-        holder.question.setText(questionDone.getQuestion());
+        holder.question.setText("Câu " + (position + 1) + ": " + questionDone.getQuestion());
         holder.option1.setText(questionDone.getOption1());
+        holder.showAnswer(holder.option1, questionDone.getSelected(), questionDone.getAnswer());
         holder.option2.setText(questionDone.getOption2());
+        holder.showAnswer(holder.option2, questionDone.getSelected(), questionDone.getAnswer());
         holder.option3.setText(questionDone.getOption3());
+        holder.showAnswer(holder.option3, questionDone.getSelected(), questionDone.getAnswer());
         holder.option4.setText(questionDone.getOption4());
+        holder.showAnswer(holder.option4, questionDone.getSelected(), questionDone.getAnswer());
+
     }
 
     @Override
@@ -47,9 +56,10 @@ public class QuestionDoneAdapter extends RecyclerView.Adapter<QuestionDoneAdapte
         return doneList.size();
     }
 
-    public class QuestionDoneViewHolder extends RecyclerView.ViewHolder{
+    public class QuestionDoneViewHolder extends RecyclerView.ViewHolder {
         TextView question;
         RadioButton option1, option2, option3, option4;
+
         public QuestionDoneViewHolder(@NonNull View view) {
             super(view);
             question = view.findViewById(R.id.question);
@@ -57,7 +67,17 @@ public class QuestionDoneAdapter extends RecyclerView.Adapter<QuestionDoneAdapte
             option2 = view.findViewById(R.id.option2);
             option3 = view.findViewById(R.id.option3);
             option4 = view.findViewById(R.id.option4);
+        }
 
+        public void showAnswer(RadioButton button, String selected, String answer) {
+            String buttonContent = button.getText().toString();
+            if (buttonContent.equals(answer))
+                button.setTextColor(Color.parseColor("#4caf50"));
+            if (buttonContent.equals(selected)) {
+                button.setChecked(true);
+                if (!buttonContent.equals(answer))
+                    button.setTextColor(Color.parseColor("#ff0000"));
+            }
         }
     }
 }

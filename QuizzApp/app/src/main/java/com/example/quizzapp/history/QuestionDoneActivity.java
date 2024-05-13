@@ -19,16 +19,13 @@ public class QuestionDoneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_done);
-        Result result = (Result) getIntent().getSerializableExtra("resultId");
+        Result result = (Result) getIntent().getSerializableExtra("result");
         QuestionDoneHelper doneHelper = new QuestionDoneHelper(this);
         List<QuestionDone> doneList = doneHelper.getDoneListByResult(result);
         recyclerView = findViewById(R.id.recycler_view);
         QuestionDoneAdapter doneAdapter = new QuestionDoneAdapter(this, doneList);
         recyclerView.setAdapter(doneAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setReverseLayout(true);
-        layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
     }
 }

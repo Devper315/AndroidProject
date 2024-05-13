@@ -65,4 +65,11 @@ public class QuestionDoneHelper {
         }
         return valuesList;
     }
+
+    public void deleteById(int resultId) {
+        String whereClause = "result_id = ?";
+        String[] whereArgs = {Integer.toString(resultId)};
+        SQLiteDatabase sqlite = helper.getWritableDatabase();
+        sqlite.delete("question_done", whereClause, whereArgs);
+    }
 }

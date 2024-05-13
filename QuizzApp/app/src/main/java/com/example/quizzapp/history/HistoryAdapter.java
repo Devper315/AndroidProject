@@ -15,8 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quizzapp.R;
+import com.example.quizzapp.dao.QuestionDoneHelper;
 import com.example.quizzapp.dao.QuizzHelper;
 import com.example.quizzapp.dao.ResultHelper;
+import com.example.quizzapp.model.QuestionDone;
 import com.example.quizzapp.model.Result;
 
 import java.io.Serializable;
@@ -52,8 +54,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ScoreVie
             builder.setMessage("Bạn có chắc chắn muốn xóa kết quả này?");
             builder.setIcon(R.drawable.icon_delete);
             builder.setPositiveButton("Có", (dialogInterface, i) -> {
-                ResultHelper helper = new ResultHelper(context);
-                helper.deleteResultById(result.getId());
+                ResultHelper resultHelper = new ResultHelper(context);
+                QuestionDoneHelper doneHelper = new QuestionDoneHelper(context);
+                doneHelper.deleteById(result.getId());
+                resultHelper.deleteById(result.getId());
                 resultList.remove(result);
                 notifyDataSetChanged();
             });
@@ -81,7 +85,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ScoreVie
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(context, HistoryActivity.class);
+            Intent intent = new Intent(context, QuestionDoneActivity.class);
             int position = getAdapterPosition();
             intent.putExtra("result", resultList.get(position));
             context.startActivity(intent);
