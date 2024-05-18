@@ -37,7 +37,7 @@ import java.util.List;
 
 public class ScoreActivity extends AppCompatActivity {
     TextView scoreTxt, totalTxt;
-    int score, total;
+    int score;
     Button historyBtn;
 
     @SuppressLint("SetTextI18n")
@@ -46,18 +46,18 @@ public class ScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
         score = getIntent().getIntExtra("score", 0);
-        total = getIntent().getIntExtra("total", 0);
         scoreTxt = findViewById(R.id.score);
         totalTxt = findViewById(R.id.total);
         historyBtn = findViewById(R.id.history_btn);
         scoreTxt.setText(score + "");
-        totalTxt.setText(total + "");
         Date currentDate = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String formattedDateTime = dateFormat.format(currentDate);
-        Result result = new Result(score + "/" + total, loginUser.getUid(), formattedDateTime);
-        ResultHelper resultHelper = new ResultHelper(this);
         List<QuestionDone> doneList = (List<QuestionDone>) getIntent().getSerializableExtra("doneList");
+        Result result = new Result(score + "/" + doneList.size(), loginUser.getUid(), formattedDateTime);
+        totalTxt.setText(doneList.size() + "");
+        // khởi tạo kết nối DB
+        ResultHelper resultHelper = new ResultHelper(this);
         Long newResultId = resultHelper.addResult(result);
         QuestionDoneHelper doneHelper = new QuestionDoneHelper(this);
         doneHelper.addDoneList(doneList, newResultId);

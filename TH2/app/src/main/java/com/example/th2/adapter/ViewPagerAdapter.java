@@ -1,13 +1,10 @@
-package com.example.sqlitedemo.adapter;
+package com.example.th2.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.sqlitedemo.fragment.FragmentHistory;
-import com.example.sqlitedemo.fragment.FragmentHome;
-import com.example.sqlitedemo.fragment.FragmentSearch;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
@@ -18,8 +15,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 0) return new FragmentHome();
-        if (position == 1) return new FragmentHistory();
-        return new FragmentSearch();
+        if (position == 1) return new FragmentLove();
+        return new FragmentStatistical();
     }
 
     @Override

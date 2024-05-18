@@ -110,7 +110,6 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
             newCategories[i + 1] = categories[i];
         }
         spCategory.setAdapter(new ArrayAdapter<String>(getContext(), R.layout.category_spinner, newCategories));
-
     }
 
     @Override

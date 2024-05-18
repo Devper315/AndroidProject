@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/menuHome"
-        android:title="Hôm nay"
-        android:icon="@drawable/icon_today"/>
+        android:title="Trang chủ"
+        android:icon="@drawable/icon_home"/>
     <item android:id="@+id/menuHistory"
-        android:title="Lịch sử"
-        android:icon="@drawable/icon_history"/>
+        android:title="Yêu thích"
+        android:icon="@drawable/icon_love"/>
     <item android:id="@+id/menuSearch"
-        android:title="Tìm kiếm"
-        android:icon="@drawable/icon_search"/>
+        android:title="Thống kê"
+        android:icon="@drawable/icon_statistical"/>
 </menu>

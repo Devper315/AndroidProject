@@ -68,14 +68,7 @@ public class ModifyActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         ItemHelper itemHelper = new ItemHelper(this);
         if (view == eDate){
-            final Calendar calendar = Calendar.getInstance();
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH);
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog dialog = new DatePickerDialog(ModifyActivity.this, (datePicker, y, m, d) -> {
-                String date = String.format("%02d/%02d/%d", d, m + 1, y);
-                eDate.setText(date);
-            }, year, month, day);
+            DatePickerDialog dialog = Utils.buildDateDialog(this, (EditText) view);
             dialog.show();
         }
         if (view == btnCancel){
