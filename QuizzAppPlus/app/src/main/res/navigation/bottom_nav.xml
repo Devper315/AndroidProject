@@ -7,11 +7,11 @@
 
     <fragment android:id="@+id/quizz"
         android:label="Home"
-        android:name="com.example.quizzapp.ui.quizz.QuizzFragment"
+        android:name="com.example.quizzapp.fragment.QuizzFragment"
         tools:layout="@layout/fragment_quizz"/>
     <fragment android:id="@+id/history"
         android:label="History"
-        android:name="com.example.quizzapp.history.HistoryFragment"
+        android:name="com.example.quizzapp.fragment.HistoryFragment"
         tools:layout="@layout/fragment_history"/>
 
 </navigation>

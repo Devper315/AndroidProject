@@ -1,4 +1,4 @@
-package com.example.quizzapp.history;
+package com.example.quizzapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -8,20 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quizzapp.R;
-import com.example.quizzapp.dao.QuestionDoneHelper;
-import com.example.quizzapp.dao.QuizzHelper;
-import com.example.quizzapp.dao.ResultHelper;
-import com.example.quizzapp.model.QuestionDone;
+import com.example.quizzapp.helper.QuestionDoneHelper;
+import com.example.quizzapp.helper.ResultHelper;
+import com.example.quizzapp.history.QuestionDoneActivity;
 import com.example.quizzapp.model.Result;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ScoreViewHolder>{

@@ -1,4 +1,4 @@
-package com.example.quizzapp.ui.quizz;
+package com.example.quizzapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

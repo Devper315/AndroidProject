@@ -1,4 +1,4 @@
-package com.example.quizzapp.ui.quizz;
+package com.example.quizzapp.fragment;
 
 import static com.example.quizzapp.Utils.loginUser;
 
@@ -13,10 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.quizzapp.R;
-import com.example.quizzapp.Utils;
 import com.example.quizzapp.authentication.LoginActivity;
-import com.google.firebase.Firebase;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.quizzapp.quizz.StartQuizz;
 
 public class QuizzFragment extends Fragment {
     Button playQuizz;

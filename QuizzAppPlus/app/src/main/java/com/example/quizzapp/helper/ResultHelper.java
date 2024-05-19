@@ -1,4 +1,4 @@
-package com.example.quizzapp.dao;
+package com.example.quizzapp.helper;
 
 import android.content.ContentValues;
 import android.content.Context;

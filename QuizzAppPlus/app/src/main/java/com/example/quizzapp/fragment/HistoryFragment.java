@@ -1,13 +1,11 @@
-package com.example.quizzapp.history;
+package com.example.quizzapp.fragment;
 
 import static com.example.quizzapp.Utils.loginUser;
-import static com.example.quizzapp.Utils.reference;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,9 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quizzapp.R;
-import com.example.quizzapp.dao.ResultHelper;
+import com.example.quizzapp.helper.ResultHelper;
+import com.example.quizzapp.adapter.HistoryAdapter;
 import com.example.quizzapp.model.Result;
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
 

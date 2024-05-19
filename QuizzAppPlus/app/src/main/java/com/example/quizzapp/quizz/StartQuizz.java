@@ -1,4 +1,4 @@
-package com.example.quizzapp.ui.quizz;
+package com.example.quizzapp.quizz;
 
 import static com.example.quizzapp.Utils.reference;
 
@@ -12,13 +12,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.example.quizzapp.R;
 import com.example.quizzapp.Utils;
+import com.example.quizzapp.adapter.QuizzAdapter;
 import com.example.quizzapp.model.Question;
 import com.example.quizzapp.model.QuestionDone;
 import com.google.firebase.database.DataSnapshot;

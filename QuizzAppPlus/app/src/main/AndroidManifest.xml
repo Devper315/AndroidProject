@@ -22,10 +22,10 @@
             android:name=".history.HistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.quizz.ScoreActivity"
+            android:name=".quizz.ScoreActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.quizz.StartQuizz"
+            android:name=".quizz.StartQuizz"
             android:exported="false" />
         <activity
             android:name=".authentication.ProfileActivity"

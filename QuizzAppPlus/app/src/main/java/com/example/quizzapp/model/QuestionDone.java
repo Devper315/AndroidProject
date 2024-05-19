@@ -1,6 +1,6 @@
 package com.example.quizzapp.model;
 
-import com.example.quizzapp.ui.quizz.QuizzAdapter;
+import com.example.quizzapp.adapter.QuizzAdapter;
 
 import java.io.Serializable;
 

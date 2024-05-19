@@ -1,21 +1,10 @@
 package com.example.quizzapp.authentication;
 
-import static com.example.quizzapp.Utils.loginUser;
-import static com.example.quizzapp.Utils.reference;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,21 +14,12 @@ import android.widget.Toast;
 
 import com.example.quizzapp.R;
 import com.example.quizzapp.Utils;
-import com.example.quizzapp.dao.QuizzHelper;
-import com.example.quizzapp.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText regName, regEmail, regPassword;
