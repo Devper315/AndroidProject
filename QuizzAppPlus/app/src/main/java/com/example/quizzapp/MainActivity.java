@@ -17,14 +17,12 @@ import android.view.MenuItem;
 
 import com.example.quizzapp.authentication.LoginActivity;
 import com.example.quizzapp.authentication.ProfileActivity;
-import com.example.quizzapp.history.HistoryActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
-    private NavigationView navigationView;
     private BottomNavigationView bottomNavigationView;
     private NavController navController;
 
@@ -34,25 +32,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         initView();
         Utils.getDatabaseReference();
-        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        navigationView.setNavigationItemSelectedListener(this);
         navController = Navigation.findNavController(this, R.id.main_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 
     private void initView() {
         drawerLayout = findViewById(R.id.my_drawer);
-        navigationView = findViewById(R.id.navigation_view);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)) return true;
         if (item.getItemId() == R.id.profile) {
             if (loginUser != null) {
                 startActivity(new Intent(MainActivity.this, ProfileActivity.class));
@@ -62,12 +53,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.leaderboar)
-            startActivity(new Intent(MainActivity.this, HistoryActivity.class));
-        return true;
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

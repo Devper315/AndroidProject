@@ -45,8 +45,6 @@ public class RegisterActivity extends AppCompatActivity {
     EditText regName, regEmail, regPassword;
     Button registerBtn, regLogBtn;
     ImageView regImage;
-    static int REQUEST_CODE = 1;
-    Uri pickedImgUri;
     ProgressBar registerProgressBar;
     private FirebaseAuth auth;
     @Override
@@ -64,12 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         registerBtn.setOnClickListener(v -> registerUser());
         regLogBtn.setOnClickListener(v -> openLogin());
-        regImage.setOnClickListener(v -> {
-            if (Build.VERSION.SDK_INT >= 22){
-                checkAndRequestPermission();
-            }
-            else openGallery();
-        });
+
     }
 
     private void openLogin() {
@@ -77,30 +70,6 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
-    private void checkAndRequestPermission() {
-        if (ContextCompat.checkSelfPermission(RegisterActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(RegisterActivity.this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-        }
-        else openGallery();
-    }
-
-    @SuppressWarnings("deprecation")
-    private void openGallery() {
-        startActivityForResult(new Intent().setAction(Intent.ACTION_GET_CONTENT)
-                .setType("image/*"), REQUEST_CODE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK){
-            if (data != null){
-                pickedImgUri = data.getData();
-                regImage.setImageURI(pickedImgUri);
-            }
-        }
-    }
 
     private void registerUser() {
         String name, email, password;
@@ -119,7 +88,10 @@ public class RegisterActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                                 FirebaseUser registerUser = auth.getCurrentUser();
-                                updateUserImage(name, pickedImgUri, registerUser);
+                                UserProfileChangeRequest changeRequest = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(name)
+                                        .build();
+                                registerUser.updateProfile(changeRequest);
                                 openProfile();
                                 registerProgressBar.setVisibility(View.GONE);
                             }
@@ -138,23 +110,4 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
-    private void updateUserImage(String name, Uri pickedImgUri, FirebaseUser currentUser) {
-        StorageReference storage = FirebaseStorage.getInstance().getReference().child("user_image");
-        StorageReference imgFilePath = storage.child(pickedImgUri.getLastPathSegment());
-        imgFilePath.putFile(pickedImgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                imgFilePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        UserProfileChangeRequest changeRequest = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(name)
-                                .setPhotoUri(uri)
-                                .build();
-                        currentUser.updateProfile(changeRequest);
-                    }
-                });
-            }
-        });
-    }
 }

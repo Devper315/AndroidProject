@@ -25,10 +25,10 @@ public class QuestionDoneHelper {
         }
     }
 
-    public List<QuestionDone> getDoneListByResult(Result result){
+    public List<QuestionDone> getDoneListByResultId(int resultId){
         List<QuestionDone> list = new ArrayList<>();
         String whereClause = "result_id = ?";
-        String[] whereArgs = {String.valueOf(result.getId())};
+        String[] whereArgs = {String.valueOf(resultId)};
         SQLiteDatabase sqlite = helper.getReadableDatabase();
         Cursor cr = sqlite.query("question_done", null, whereClause, whereArgs, null, null, null);
         while (cr != null && cr.moveToNext()) {
@@ -66,7 +66,7 @@ public class QuestionDoneHelper {
         return valuesList;
     }
 
-    public void deleteById(int resultId) {
+    public void deleteByResultId(int resultId) {
         String whereClause = "result_id = ?";
         String[] whereArgs = {Integer.toString(resultId)};
         SQLiteDatabase sqlite = helper.getWritableDatabase();

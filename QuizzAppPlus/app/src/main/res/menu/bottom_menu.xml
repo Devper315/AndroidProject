@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@id/home"
-        android:title="Home"
-        android:icon="@drawable/icon_home"/>
     <item android:id="@id/quizz"
         android:title="Quizz"
-        android:icon="@drawable/icon_extension"/>
+        android:icon="@drawable/icon_home"/>
+    <item android:id="@id/history"
+        android:title="Lịch sử"
+        android:icon="@drawable/icon_history"/>
 </menu>

@@ -21,7 +21,7 @@ public class QuestionDoneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_question_done);
         Result result = (Result) getIntent().getSerializableExtra("result");
         QuestionDoneHelper doneHelper = new QuestionDoneHelper(this);
-        List<QuestionDone> doneList = doneHelper.getDoneListByResult(result);
+        List<QuestionDone> doneList = doneHelper.getDoneListByResultId(result.getId());
         recyclerView = findViewById(R.id.recycler_view);
         QuestionDoneAdapter doneAdapter = new QuestionDoneAdapter(this, doneList);
         recyclerView.setAdapter(doneAdapter);

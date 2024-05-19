@@ -56,7 +56,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ScoreVie
             builder.setPositiveButton("Có", (dialogInterface, i) -> {
                 ResultHelper resultHelper = new ResultHelper(context);
                 QuestionDoneHelper doneHelper = new QuestionDoneHelper(context);
-                doneHelper.deleteById(result.getId());
+                doneHelper.deleteByResultId(result.getId());
                 resultHelper.deleteById(result.getId());
                 resultList.remove(result);
                 notifyDataSetChanged();

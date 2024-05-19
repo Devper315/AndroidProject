@@ -1,19 +1,10 @@
 package com.example.quizzapp.dao;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import androidx.annotation.Nullable;
 
-
-import com.example.quizzapp.model.Result;
-import com.example.quizzapp.model.User;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class QuizzHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "quizz.db";

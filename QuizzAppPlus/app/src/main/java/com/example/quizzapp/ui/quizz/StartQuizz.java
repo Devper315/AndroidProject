@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.quizzapp.R;
@@ -75,17 +76,26 @@ public class StartQuizz extends AppCompatActivity {
     }
 
     private void saveTheTest(){
+        boolean done = true;
         for(int i = 0; i < questionList.size(); i++){
             View view = recyclerView.getChildAt(i);
             QuizzAdapter.QuizzViewHolder viewHolder = new QuizzAdapter.QuizzViewHolder(view);
             QuestionDone newDone = new QuestionDone(viewHolder);
+            if (newDone.getSelected() == null) {
+                done = false;
+                Toast.makeText(this, "Chưa đủ", Toast.LENGTH_LONG).show();
+                doneList.clear();
+                break;
+            }
             if (newDone.markQuestion()) score += 1;
             doneList.add(newDone);
         }
-        Intent intent = new Intent(this, ScoreActivity.class);
-        intent.putExtra("score", score);
-        intent.putExtra("doneList", (Serializable) doneList);
-        startActivity(intent);
-        finish();
+        if (done){
+            Intent intent = new Intent(this, ScoreActivity.class);
+            intent.putExtra("score", score);
+            intent.putExtra("doneList", (Serializable) doneList);
+            startActivity(intent);
+            finish();
+        }
     }
 }
