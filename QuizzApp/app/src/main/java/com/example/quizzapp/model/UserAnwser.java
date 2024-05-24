@@ -2,7 +2,7 @@ package com.example.quizzapp.model;
 
 import java.io.Serializable;
 
-public class QuestionDone implements Serializable {
+public class UserAnwser implements Serializable {
     private int id;
     private String option1, option2, option3, option4, question, answer, selected;
 
@@ -16,11 +16,11 @@ public class QuestionDone implements Serializable {
 
     private Result result;
 
-    public QuestionDone() {
+    public UserAnwser() {
 
     }
 
-    public QuestionDone(int id, String option1, String option2, String option3, String option4, String question, String answer, String selected) {
+    public UserAnwser(int id, String option1, String option2, String option3, String option4, String question, String answer, String selected) {
         this.id = id;
         this.option1 = option1;
         this.option2 = option2;
@@ -31,7 +31,7 @@ public class QuestionDone implements Serializable {
         this.selected = selected;
     }
 
-    public QuestionDone(Question question, String selected){
+    public UserAnwser(Question question, String selected){
         this.question = question.getQuestion();
         this.option1 = question.getOption1();
         this.option2 = question.getOption2();

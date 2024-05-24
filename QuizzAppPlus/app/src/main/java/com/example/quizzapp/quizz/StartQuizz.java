@@ -19,7 +19,7 @@ import com.example.quizzapp.R;
 import com.example.quizzapp.Utils;
 import com.example.quizzapp.adapter.QuizzAdapter;
 import com.example.quizzapp.model.Question;
-import com.example.quizzapp.model.QuestionDone;
+import com.example.quizzapp.model.UserAnswer;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -33,7 +33,7 @@ public class StartQuizz extends AppCompatActivity {
     QuizzAdapter quizzAdapter;
     Button submitBtn;
     int score = 0;
-    List<QuestionDone> doneList = new ArrayList<>();
+    List<UserAnswer> doneList = new ArrayList<>();
 
 
     private List<Question> questionList = new ArrayList<>();
@@ -79,7 +79,7 @@ public class StartQuizz extends AppCompatActivity {
         for(int i = 0; i < questionList.size(); i++){
             View view = recyclerView.getChildAt(i);
             QuizzAdapter.QuizzViewHolder viewHolder = new QuizzAdapter.QuizzViewHolder(view);
-            QuestionDone newDone = new QuestionDone(viewHolder);
+            UserAnswer newDone = new UserAnswer(viewHolder);
             if (newDone.getSelected() == null) {
                 done = false;
                 Toast.makeText(this, "Chưa đủ", Toast.LENGTH_LONG).show();

@@ -27,7 +27,7 @@ public class QuizzHelper extends SQLiteOpenHelper {
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "user_id TEXT, score INTEGER, datetime TEXT)";
         db.execSQL(sql1);
-        String sql2 = "CREATE TABLE question_done(" +
+        String sql2 = "CREATE TABLE user_answer(" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "option1 TEXT, option2 TEXT, option3 TEXT, option4 TEXT, question TEXT, answer TEXT," +
                 "selected TEXT, result_id INT," +

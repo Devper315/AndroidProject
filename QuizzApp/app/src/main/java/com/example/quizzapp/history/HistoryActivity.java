@@ -3,7 +3,6 @@ package com.example.quizzapp.history;
 import static com.example.quizzapp.Utils.loginUser;
 import static com.example.quizzapp.Utils.reference;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,20 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.quizzapp.R;
-import com.example.quizzapp.dao.QuestionDoneHelper;
-import com.example.quizzapp.dao.QuizzHelper;
+import com.example.quizzapp.dao.UserAnswerHelper;
 import com.example.quizzapp.dao.ResultHelper;
-import com.example.quizzapp.model.QuestionDone;
 import com.example.quizzapp.model.Result;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
@@ -41,7 +33,7 @@ public class HistoryActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
         scoreReference = reference.child("score");
         ResultHelper resultHelper = new ResultHelper(this);
-        QuestionDoneHelper doneHelper = new QuestionDoneHelper(this);
+        UserAnswerHelper doneHelper = new UserAnswerHelper(this);
         List<Result> resultList = resultHelper.getResultByUserId(loginUser.getUid());
         adapter = new HistoryAdapter(resultList, HistoryActivity.this);
         recyclerView.setAdapter(adapter);

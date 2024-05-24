@@ -10,13 +10,13 @@ import android.widget.TextView;
 
 import com.example.quizzapp.R;
 import com.example.quizzapp.adapter.QuestionDoneAdapter;
-import com.example.quizzapp.helper.QuestionDoneHelper;
-import com.example.quizzapp.model.QuestionDone;
+import com.example.quizzapp.helper.UserAnswerHelper;
+import com.example.quizzapp.model.UserAnswer;
 import com.example.quizzapp.model.Result;
 
 import java.util.List;
 
-public class QuestionDoneActivity extends AppCompatActivity {
+public class UserAnswerActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     TextView tvResult;
 
@@ -24,10 +24,10 @@ public class QuestionDoneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question_done);
+        setContentView(R.layout.activity_user_answer);
         Result result = (Result) getIntent().getSerializableExtra("result");
-        QuestionDoneHelper doneHelper = new QuestionDoneHelper(this);
-        List<QuestionDone> doneList;
+        UserAnswerHelper doneHelper = new UserAnswerHelper(this);
+        List<UserAnswer> doneList;
         if (result.getId() != 0){
             doneList = doneHelper.getDoneListByResultId(result.getId());
         }

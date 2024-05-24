@@ -14,9 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quizzapp.R;
-import com.example.quizzapp.helper.QuestionDoneHelper;
+import com.example.quizzapp.helper.UserAnswerHelper;
 import com.example.quizzapp.helper.ResultHelper;
-import com.example.quizzapp.history.QuestionDoneActivity;
+import com.example.quizzapp.history.UserAnswerActivity;
 import com.example.quizzapp.model.Result;
 
 import java.util.List;
@@ -52,7 +52,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ScoreVie
             builder.setIcon(R.drawable.icon_delete);
             builder.setPositiveButton("Có", (dialogInterface, i) -> {
                 ResultHelper resultHelper = new ResultHelper(context);
-                QuestionDoneHelper doneHelper = new QuestionDoneHelper(context);
+                UserAnswerHelper doneHelper = new UserAnswerHelper(context);
                 doneHelper.deleteByResultId(result.getId());
                 resultHelper.deleteById(result.getId());
                 resultList.remove(result);
@@ -82,7 +82,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ScoreVie
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(context, QuestionDoneActivity.class);
+            Intent intent = new Intent(context, UserAnswerActivity.class);
             int position = getAdapterPosition();
             intent.putExtra("result", resultList.get(position));
             context.startActivity(intent);

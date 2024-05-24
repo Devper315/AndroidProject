@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.example.quizzapp.R;
 import com.example.quizzapp.Utils;
 import com.example.quizzapp.dao.QuizzHelper;
-import com.example.quizzapp.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

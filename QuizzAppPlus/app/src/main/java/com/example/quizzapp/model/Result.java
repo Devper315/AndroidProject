@@ -8,15 +8,15 @@ public class Result implements Serializable {
     private String score;
     private String userId, datetime;
 
-    public List<QuestionDone> getDoneList() {
+    public List<UserAnswer> getDoneList() {
         return doneList;
     }
 
-    public void setDoneList(List<QuestionDone> doneList) {
+    public void setDoneList(List<UserAnswer> doneList) {
         this.doneList = doneList;
     }
 
-    private List<QuestionDone> doneList;
+    private List<UserAnswer> doneList;
 
     public Result(String score, String userId, String datetime) {
         this.score = score;

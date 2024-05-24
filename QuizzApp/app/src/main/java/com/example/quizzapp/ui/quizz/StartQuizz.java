@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.example.quizzapp.R;
 import com.example.quizzapp.Utils;
 import com.example.quizzapp.model.Question;
-import com.example.quizzapp.model.QuestionDone;
+import com.example.quizzapp.model.UserAnwser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -38,7 +38,7 @@ public class StartQuizz extends AppCompatActivity {
     private int position = 0;
     private int count = 0;
     private List<Question> questionList;
-    private List<QuestionDone> doneList = new ArrayList<>();
+    private List<UserAnwser> doneList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,7 +138,7 @@ public class StartQuizz extends AppCompatActivity {
             Button correctOption = container.findViewWithTag(answer);
             correctOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4caf50")));
         }
-        doneList.add(new QuestionDone(questionList.get(position), selected));
+        doneList.add(new UserAnwser(questionList.get(position), selected));
     }
 
     private void enabled(Boolean enable) {

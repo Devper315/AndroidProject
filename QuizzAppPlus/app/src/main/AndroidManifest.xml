@@ -16,7 +16,7 @@
         android:theme="@style/Theme.QuizzApp"
         tools:targetApi="31">
         <activity
-            android:name=".history.QuestionDoneActivity"
+            android:name=".history.UserAnswerActivity"
             android:exported="false" />
         <activity
             android:name=".history.HistoryActivity"

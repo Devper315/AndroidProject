@@ -4,7 +4,7 @@ import com.example.quizzapp.adapter.QuizzAdapter;
 
 import java.io.Serializable;
 
-public class QuestionDone implements Serializable {
+public class UserAnswer implements Serializable {
     private int id;
     private String option1, option2, option3, option4, question, answer, selected;
 
@@ -18,11 +18,11 @@ public class QuestionDone implements Serializable {
 
     private Result result;
 
-    public QuestionDone() {
+    public UserAnswer() {
 
     }
 
-    public QuestionDone(int id, String option1, String option2, String option3, String option4, String question, String answer, String selected) {
+    public UserAnswer(int id, String option1, String option2, String option3, String option4, String question, String answer, String selected) {
         this.id = id;
         this.option1 = option1;
         this.option2 = option2;
@@ -33,7 +33,7 @@ public class QuestionDone implements Serializable {
         this.selected = selected;
     }
 
-    public QuestionDone (QuizzAdapter.QuizzViewHolder viewHolder){
+    public UserAnswer(QuizzAdapter.QuizzViewHolder viewHolder){
         this.option1 = viewHolder.option1.getText().toString();
         this.option2 = viewHolder.option2.getText().toString();
         this.option3 = viewHolder.option3.getText().toString();

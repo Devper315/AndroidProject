@@ -5,38 +5,38 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.quizzapp.model.QuestionDone;
+import com.example.quizzapp.model.UserAnswer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionDoneHelper {
+public class UserAnswerHelper {
     private QuizzHelper helper;
-    public QuestionDoneHelper (Context context){
+    public UserAnswerHelper(Context context){
         this.helper = new QuizzHelper(context);
     }
 
-    public void addDoneList(List<QuestionDone> doneList, Long resultId){
+    public void addDoneList(List<UserAnswer> doneList, Long resultId){
         List<ContentValues> valuesList = getValuesFromDoneList(doneList, resultId);
         SQLiteDatabase database = helper.getWritableDatabase();
         for(ContentValues values: valuesList){
-            database.insert("question_done", null, values);
+            database.insert("user_answer", null, values);
         }
     }
 
-    public List<QuestionDone> getDoneListByResultId(int resultId){
-        List<QuestionDone> list = new ArrayList<>();
+    public List<UserAnswer> getDoneListByResultId(int resultId){
+        List<UserAnswer> list = new ArrayList<>();
         String whereClause = "result_id = ?";
         String[] whereArgs = {String.valueOf(resultId)};
         SQLiteDatabase sqlite = helper.getReadableDatabase();
-        Cursor cr = sqlite.query("question_done", null, whereClause, whereArgs, null, null, null);
+        Cursor cr = sqlite.query("user_answer", null, whereClause, whereArgs, null, null, null);
         while (cr != null && cr.moveToNext()) {
             addDoneFromCursor(cr, list);
         }
         return list;
     }
 
-    public void addDoneFromCursor(Cursor cursor,  List<QuestionDone> list){
+    public void addDoneFromCursor(Cursor cursor,  List<UserAnswer> list){
         int id = cursor.getInt(0);
         String option1 = cursor.getString(1);
         String option2 = cursor.getString(2);
@@ -45,12 +45,12 @@ public class QuestionDoneHelper {
         String question = cursor.getString(5);
         String answer = cursor.getString(6);
         String selected = cursor.getString(7);
-        list.add(new QuestionDone(id, option1, option2, option3, option4, question, answer, selected));
+        list.add(new UserAnswer(id, option1, option2, option3, option4, question, answer, selected));
     }
 
-    private List<ContentValues> getValuesFromDoneList(List<QuestionDone> doneList, Long resultId){
+    private List<ContentValues> getValuesFromDoneList(List<UserAnswer> doneList, Long resultId){
         List<ContentValues> valuesList = new ArrayList<>();
-        for(QuestionDone done: doneList){
+        for(UserAnswer done: doneList){
             ContentValues values = new ContentValues();
             values.put("question", done.getQuestion());
             values.put("option1", done.getOption1());
@@ -69,6 +69,6 @@ public class QuestionDoneHelper {
         String whereClause = "result_id = ?";
         String[] whereArgs = {Integer.toString(resultId)};
         SQLiteDatabase sqlite = helper.getWritableDatabase();
-        sqlite.delete("question_done", whereClause, whereArgs);
+        sqlite.delete("user_answer", whereClause, whereArgs);
     }
 }

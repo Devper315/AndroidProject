@@ -7,23 +7,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.quizzapp.R;
-import com.example.quizzapp.dao.QuestionDoneHelper;
-import com.example.quizzapp.model.QuestionDone;
+import com.example.quizzapp.dao.UserAnswerHelper;
+import com.example.quizzapp.model.UserAnwser;
 import com.example.quizzapp.model.Result;
 
 import java.util.List;
 
-public class QuestionDoneActivity extends AppCompatActivity {
+public class UserAnswerActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question_done);
+        setContentView(R.layout.activity_user_answer);
         Result result = (Result) getIntent().getSerializableExtra("result");
-        QuestionDoneHelper doneHelper = new QuestionDoneHelper(this);
-        List<QuestionDone> doneList = doneHelper.getDoneListByResult(result);
+        UserAnswerHelper doneHelper = new UserAnswerHelper(this);
+        List<UserAnwser> doneList = doneHelper.getDoneListByResult(result);
         recyclerView = findViewById(R.id.recycler_view);
-        QuestionDoneAdapter doneAdapter = new QuestionDoneAdapter(this, doneList);
+        UserAnswerAdapter doneAdapter = new UserAnswerAdapter(this, doneList);
         recyclerView.setAdapter(doneAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

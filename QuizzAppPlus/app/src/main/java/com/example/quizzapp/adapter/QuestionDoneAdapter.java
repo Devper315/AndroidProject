@@ -13,15 +13,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quizzapp.R;
-import com.example.quizzapp.model.QuestionDone;
+import com.example.quizzapp.model.UserAnswer;
 
 import java.util.List;
 
 public class QuestionDoneAdapter extends RecyclerView.Adapter<QuestionDoneAdapter.QuestionDoneViewHolder> {
     private Context context;
-    private List<QuestionDone> doneList;
+    private List<UserAnswer> doneList;
 
-    public QuestionDoneAdapter(Context context, List<QuestionDone> doneList) {
+    public QuestionDoneAdapter(Context context, List<UserAnswer> doneList) {
         this.context = context;
         this.doneList = doneList;
     }
@@ -29,7 +29,7 @@ public class QuestionDoneAdapter extends RecyclerView.Adapter<QuestionDoneAdapte
     @NonNull
     @Override
     public QuestionDoneViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.question_done_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.user_answer_item, parent, false);
         QuestionDoneViewHolder viewHolder = new QuestionDoneViewHolder(view);
         return viewHolder;
     }
@@ -37,16 +37,16 @@ public class QuestionDoneAdapter extends RecyclerView.Adapter<QuestionDoneAdapte
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull QuestionDoneViewHolder holder, int position) {
-        QuestionDone questionDone = doneList.get(position);
-        holder.question.setText("Câu " + (position + 1) + ": " + questionDone.getQuestion());
-        holder.option1.setText(questionDone.getOption1());
-        holder.showAnswer(holder.option1, questionDone.getSelected(), questionDone.getAnswer());
-        holder.option2.setText(questionDone.getOption2());
-        holder.showAnswer(holder.option2, questionDone.getSelected(), questionDone.getAnswer());
-        holder.option3.setText(questionDone.getOption3());
-        holder.showAnswer(holder.option3, questionDone.getSelected(), questionDone.getAnswer());
-        holder.option4.setText(questionDone.getOption4());
-        holder.showAnswer(holder.option4, questionDone.getSelected(), questionDone.getAnswer());
+        UserAnswer userAnswer = doneList.get(position);
+        holder.question.setText("Câu " + (position + 1) + ": " + userAnswer.getQuestion());
+        holder.option1.setText(userAnswer.getOption1());
+        holder.showAnswer(holder.option1, userAnswer.getSelected(), userAnswer.getAnswer());
+        holder.option2.setText(userAnswer.getOption2());
+        holder.showAnswer(holder.option2, userAnswer.getSelected(), userAnswer.getAnswer());
+        holder.option3.setText(userAnswer.getOption3());
+        holder.showAnswer(holder.option3, userAnswer.getSelected(), userAnswer.getAnswer());
+        holder.option4.setText(userAnswer.getOption4());
+        holder.showAnswer(holder.option4, userAnswer.getSelected(), userAnswer.getAnswer());
 
     }
 
